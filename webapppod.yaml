@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp
+  namespace: webapp
+  labels:
+    app: employees
+spec:
+  containers:
+  - name: webapp
+    image: 514684045883.dkr.ecr.us-east-1.amazonaws.com/my_app:task6
+    ports:
+    - containerPort: 80
+    env:
+    - name: DBHOST
+      value: "10.244.0.6"
+    - name: DBPORT
+      value: "3306"
+    - name: DBUSER
+      value: "root"
+    - name: DBPWD
+      value: "pw"
+    - name: DATABASE
+      value: "employees"
+    - name: APP_COLOR
+      value: "pink"
+  imagePullSecrets:
+    - name: ecr-secret-2
